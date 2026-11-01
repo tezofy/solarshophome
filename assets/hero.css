@@ -1,0 +1,400 @@
+/* =====================================================================
+   SOLAR SHOP — HOME PAGE HERO  (v5 "full-bleed trust band")
+   ---------------------------------------------------------------------
+   Only the hero is new. Every other block on index.html is the live
+   solarshop.co.nz design, untouched (assets/site.css).
+
+   This version answers the latest note:
+   • the supplied team photograph now fills the whole hero (much bigger)
+   • a theme-coloured gradient on the LEFT keeps the copy perfectly
+     legible and lets the photo clear to full colour on the right
+   • everything else stays: supplied lockup + accreditation strip,
+     site typography, site colours, flat buttons
+
+   Height: --hv2-hero-part = 0.8 of the old hero → 720px @1440×900
+   (was 300px on the brief's "one third", then 558px). One number in
+   assets/tokens.css controls it.
+   ===================================================================== */
+
+/* ---------- shell ---------- */
+.hero.hv2{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  height:var(--hv2-h);
+  padding:var(--hv2-pad-top) 0 var(--hv2-pad-bot);
+  background:var(--hv2-bg);
+  border-bottom:1px solid var(--hv2-line);
+  color:var(--hv2-body);
+}
+
+/* ---------- full-bleed photograph + left-hand gradient ---------- */
+.hv2-media{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+  background:#DCE6D6;               /* site's photo backing colour */
+}
+.hv2-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:58% 38%;          /* keeps the crew faces, the fleet and the Eden Park sign */
+  display:block;
+  /* no filter: the photograph stays natural */
+}
+/* the gradient: theme cream, opaque on the left, clear on the right */
+.hv2-wash{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    var(--hv2-wash-left),
+    var(--hv2-wash-top),
+    var(--hv2-wash-bottom);
+}
+
+/* ---------- layout: copy + strip on the left, photo free on the right ---------- */
+.hv2-in{
+  position:relative;
+  height:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:1fr auto;
+  align-items:start;
+}
+.hv2-main{
+  grid-row:1;
+  align-self:center;
+  min-width:0;
+  max-width:var(--hv2-copy-w);
+}
+
+/* ---------- headline ---------- */
+.hv2-title{
+  margin:0;
+  color:var(--hv2-ink);
+  font:800 var(--hv2-fs-h1)/var(--hv2-lh-h1) var(--hv2-font);
+  letter-spacing:-.034em;
+  text-wrap:balance;
+}
+.hv2-title .serif{
+  color:var(--hv2-gold);
+  font-family:var(--hv2-serif);
+  font-style:italic;
+  font-weight:600;
+  letter-spacing:-.012em;
+}
+
+/* ---------- tagline + support copy ---------- */
+.hv2-sub{
+  margin:var(--hv2-gap-xs) 0 0;
+  max-width:46ch;
+  color:var(--hv2-body);
+  font:400 var(--hv2-fs-sub)/var(--hv2-lh-sub) var(--hv2-font);
+}
+.hv2-sub b{
+  color:var(--hv2-ink);
+  font-weight:700;
+}
+
+/* ---------- calls to action ---------- */
+.hv2-cta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:clamp(9px,1vw,13px);
+  margin-top:var(--hv2-gap-md);
+}
+.hv2-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  height:var(--hv2-btn-h);
+  border-radius:var(--hv2-radius-btn);
+  border:1.5px solid transparent;
+  font:700 var(--hv2-fs-btn)/1 var(--hv2-font);
+  letter-spacing:-.005em;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background .25s var(--hv2-ease), border-color .25s var(--hv2-ease), color .25s var(--hv2-ease), transform .25s var(--hv2-ease);
+}
+.hv2-btn-primary{
+  padding:0 8px 0 clamp(20px,1.7vw,28px);
+  background:var(--hv2-primary);
+  border-color:var(--hv2-primary);
+  color:#fff;
+  box-shadow:0 18px 34px -22px rgba(10,30,15,.6);
+}
+.hv2-btn-primary .hv2-arrow{
+  display:grid;
+  place-items:center;
+  width:calc(var(--hv2-btn-h) - 14px);
+  height:calc(var(--hv2-btn-h) - 14px);
+  border-radius:50%;
+  background:#F3E2B0;            /* same warm accent circle as the site's .hq-btn */
+  color:var(--hv2-primary);
+  transition:transform .25s var(--hv2-ease);
+}
+.hv2-btn-primary svg{
+  width:17px;height:17px;fill:none;stroke:currentColor;
+  stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+}
+.hv2-btn-primary:hover{background:var(--hv2-primary-hover);border-color:var(--hv2-primary-hover)}
+.hv2-btn-primary:hover .hv2-arrow{transform:translateX(2px)}
+
+.hv2-btn-ghost{
+  padding:0 clamp(18px,1.7vw,26px);
+  background:rgba(255,255,255,.72);
+  border-color:var(--hv2-primary);
+  color:var(--hv2-primary);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+}
+.hv2-btn-ghost:hover{background:#fff}
+.hv2-btn-ghost .hv2-ic{
+  width:17px;height:17px;fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+
+/* ---------- supplied assets card: lockup + accreditations ---------- */
+/* Both images are the client's files, placed unaltered — no recolour,
+   no re-crop, no retracing. The card keeps them on clean white so the
+   supplied quality is preserved over the photograph. */
+.hv2-strip{
+  grid-row:2;
+  justify-self:start;
+  align-self:end;
+  width:fit-content;
+  max-width:min(680px, 100%);
+  display:flex;
+  flex-direction:column;
+  gap:clamp(8px,1.1vh,12px);
+  padding:clamp(13px,1.5vh,18px) clamp(16px,1.7vw,24px);
+  border-radius:var(--hv2-radius-card);
+  background:var(--hv2-card-bg);
+  border:1px solid rgba(31,61,38,.08);
+  box-shadow:var(--hv2-card-shadow);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.hv2-cap{
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--hv2-muted);
+  font:600 var(--hv2-fs-cap)/1.35 var(--hv2-font);
+  letter-spacing:.005em;
+}
+.hv2-cap-dash{
+  flex:none;
+  width:16px;
+  height:1px;
+  background:var(--hv2-line);
+}
+.hv2-marks{
+  display:flex;
+  align-items:center;
+  gap:clamp(12px,1.4vw,18px);
+  min-width:0;
+}
+.hv2-lockup{
+  flex:none;
+  height:var(--hv2-lockup-h);
+  width:auto;
+}
+.hv2-div{
+  flex:none;
+  width:1px;
+  align-self:stretch;
+  min-height:calc(var(--hv2-lockup-h) * .8);
+  background:rgba(31,61,38,.14);
+}
+.hv2-accred{
+  flex:1 1 auto;
+  height:var(--hv2-accred-h);
+  width:auto;
+  max-width:100%;
+  object-fit:contain;
+  object-position:left center;
+}
+
+/* ---------- gentle entrance (respects reduced motion) ---------- */
+.hv2-rise{
+  animation:hv2Rise .6s var(--hv2-ease) both;
+  animation-delay:calc(var(--i,0) * .07s);
+}
+@keyframes hv2Rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .hv2-rise{animation:none}
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+/* wide-ish laptops: keep the full-bleed band, tighten the copy column */
+@media (max-width:1280px){
+  .hv2{--hv2-copy-w:clamp(400px,46vw,560px)}
+  .hv2-bg{object-position:58% 36%}
+}
+
+/* tablet & phone: the photo becomes a band on top, copy underneath,
+   joined by the same gradient (turned vertical) */
+@media (max-width:1100px){
+  .hero.hv2{
+    height:auto;
+    display:flex;
+    flex-direction:column;
+    padding:0 0 clamp(20px,3vh,30px);
+  }
+  .hv2-media{
+    position:relative;
+    inset:auto;
+    flex:none;
+    height:calc(var(--hv2-band-h) + clamp(52px,9vh,84px)); /* extra room under the floating nav */
+    z-index:0;
+  }
+  .hv2-bg{object-position:58% 34%}
+  .hv2-wash{
+    background:var(--hv2-wash-vertical);
+  }
+  .hv2-in{
+    height:auto;
+    grid-template-rows:auto auto;
+    row-gap:clamp(18px,2.6vw,26px);
+    margin-top:calc(-1 * clamp(36px,7vw,64px));   /* text rises into the fade */
+    z-index:1;
+  }
+  .hv2-main{max-width:none}
+  .hv2-strip{
+    justify-self:stretch;
+    max-width:none;
+    width:auto;
+  }
+  .hv2-title{font-size:clamp(32px,5.4vw,46px)}
+  .hv2-sub{font-size:clamp(15px,2vw,17px);max-width:54ch}
+  .hv2-accred{height:clamp(26px,3.6vw,32px)}
+  .hv2-br{display:none}
+}
+
+/* phones */
+@media (max-width:720px){
+  .hv2{--hv2-band-h:clamp(230px,58vw,300px)}
+  .hv2-media{height:calc(var(--hv2-band-h) + 58px)}
+  .hv2-bg{object-position:56% 30%}
+  .hv2-in{row-gap:14px;margin-top:-30px}
+  .hv2-title{
+    font-size:clamp(28px,7.6vw,34px);
+    letter-spacing:-.031em;
+    line-height:1.06;
+  }
+  .hv2-sub{font-size:14.8px;line-height:1.48;margin-top:9px}
+  .hv2-cta{margin-top:15px;gap:8px}
+  .hv2-btn{height:47px;font-size:14px}
+  .hv2-btn-primary{padding-left:19px}
+  .hv2-btn-primary .hv2-arrow{width:33px;height:33px}
+  .hv2-btn-ghost{padding:0 16px}
+  .hv2-strip{padding:12px 14px;gap:8px;border-radius:16px}
+  .hv2-cap-loc{display:none}
+  .hv2-cap{font-size:11.5px}
+  .hv2-marks{gap:11px}
+  .hv2-lockup{height:38px}
+  .hv2-div{display:none}
+  .hv2-accred{height:auto;width:100%;max-width:100%;flex-basis:100%}
+  .hv2-marks{flex-wrap:wrap}
+}
+
+/* very small phones */
+@media (max-width:400px){
+  .hv2-btn-ghost{display:none}
+  .hv2-btn-primary{width:100%}
+  .hv2-lockup{height:34px}
+  .hv2-title{font-size:26.5px}
+  .hv2-sub{font-size:13.8px}
+}
+
+/* small demo notice (links to pages outside this deliverable) */
+.hv2-toast{
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);
+  z-index:300;opacity:0;pointer-events:none;
+  padding:11px 18px;border-radius:999px;
+  background:rgba(23,49,32,.96);color:#fff;
+  font:600 12.5px var(--hv2-font);
+  box-shadow:0 22px 44px -22px rgba(0,0,0,.6);
+  transition:opacity .3s var(--hv2-ease),transform .3s var(--hv2-ease);
+}
+.hv2-toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* keyboard focus — visible, on-brand, never on mouse click */
+.hv2-btn:focus-visible{
+  outline:2px solid var(--hv2-ink);
+  outline-offset:3px;
+}
+.hv2-btn-primary:focus-visible{outline-color:var(--hv2-primary)}
+
+/* =====================================================================
+   SLIDER (5 uploaded client images)
+   ===================================================================== */
+.hv2-slider{
+  position:absolute;inset:0;z-index:-2;overflow:hidden;
+  background:#DCE6D6;
+}
+.hv2-slide{
+  position:absolute;inset:0;width:100%;height:100%;
+  opacity:0;transition:opacity 1s ease;
+}
+.hv2-slide.on{opacity:1}
+.hv2-slide img{
+  width:100%;height:100%;object-fit:cover;object-position:58% 30%;display:block;
+}
+
+/* prev/next buttons */
+.hv2-prev,.hv2-next{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+  width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 10px rgba(14,30,18,.15);
+  transition:background .2s;
+}
+.hv2-prev:hover,.hv2-next:hover{background:#fff}
+.hv2-prev{left:14px}
+.hv2-next{right:14px}
+.hv2-prev svg,.hv2-next svg{width:18px;height:18px;fill:none;stroke:#18301E;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+@media (max-width:1100px){
+  .hv2-prev,.hv2-next{width:36px;height:36px}
+  .hv2-prev{left:8px}
+  .hv2-next{right:8px}
+}
+
+/* dots */
+.hv2-dots{
+  position:absolute;bottom:18px;right:clamp(16px,4vw,80px);z-index:5;
+  display:flex;gap:7px;padding:5px 10px;border-radius:999px;
+  background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.hv2-dot{
+  width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(31,61,38,.5);background:rgba(255,255,255,.55);
+  padding:0;margin:0;display:block;transition:background .2s,border-color .2s;cursor:pointer;
+}
+.hv2-dot.on{
+  background:#1F3D26;border-color:#1F3D26;
+}
+.hv2-dot:hover{border-color:#18301E}
+.hv2-cap-txt{
+  /* captions are swapped by hero.js as the slider moves */
+  transition:opacity .25s var(--hv2-ease);
+}
+@media (max-width:1100px){
+  .hv2-dots{bottom:14px;right:auto;left:50%;transform:translateX(-50%)}
+}
+@media (max-width:400px){
+  .hv2-prev,.hv2-next{width:30px;height:30px}
+  .hv2-dots{bottom:10px}
+}
