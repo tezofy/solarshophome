@@ -1,24 +1,25 @@
-# Solar Shop — Home page with the redesigned hero
+# Solar Shop — Home page with the redesigned Split Editorial & Framed Showcase hero
 
-A faithful, self-contained build of the **Solar Shop** (solarshop.co.nz) home page.
+A faithful, self-contained build of the **Solar Shop** (`solarshop.co.nz`) home page.
 Every block — navigation, ticker, cards, products, brand wall, FAQ and footer — is the
-live site's own design; **only the hero section is new**.
+live site's own design; **the hero section is newly engineered in a premium Split Editorial & Framed Showcase layout**.
 
 > **Message:** *Reliable solar solutions from a trusted brand.*
 > **Tagline:** *Powered by Trilect*
 
 ---
 
-## The hero
+## The Hero Section Highlights
 
-| | |
+| Feature | Details |
 |---|---|
-| **Layout** | One message on the left, a full-bleed photograph behind it, and a single white card holding the supplied brand assets. |
-| **Photograph** | A 5-image crossfade slider of the client's own team photos (auto-advance 5.2 s, arrows, dots, swipe, ← / → keys, pause on hover/focus, `prefers-reduced-motion` aware). No filters, no colour grading, no overlay on the photo. |
-| **Gradient** | A cream (`#F4F8F0` — the site's own hero colour) left-to-right gradient keeps the copy legible and clears to 0 % at 66 % so the photo keeps its natural colour. On phones/tablets the same gradient runs vertically. |
-| **Supplied assets** | Solar Shop logo, *Solar Shop — Powered by Trilect* lockup, accreditation strip (Master Electricians, SEANZ, Mastercraft, IMPAC Prequal, Site Safe, EWRB) — used exactly as supplied. |
-| **Height** | `0.8` of the site's previous hero → 720 px @1440×900, 768 px @1920×1080. One number controls it. |
-| **Responsive** | 320 → 1920 px tested; photo band + stacked copy below 1100 px. |
+| **Layout** | **Split Editorial & Framed Showcase** — editorial typography, trust micro-pills, and CTAs on the left; an unobstructed, framed full-colour 5-photo showcase slider on the right. |
+| **Background** | Soft light brand-colour gradient (`#FCFCF7` → `#F1F7EC` → `#E9F3E8` → `#F7F4E9`) with a subtle architectural grid texture. |
+| **5-Photo Showcase Slider** | Auto-advancing 5.2 s crossfade slider (`assets/photos/hero-01…05.webp`) featuring Field Solar Project, Home Rooftop, Commercial Solar, Farm & Dairy, and Utility-Scale Solar Farms & BESS, complete with live slide counter (`01 / 05`), category tag, location caption, progress bar, arrows, keyboard (`←` / `→`), and touch swipe. |
+| **Social Media Rail** | Circular brand-coloured badges on the right side of the hero stage for **Instagram** (official multi-stop gradient), **Facebook** (`#1877F2`), and **LinkedIn** (`#0A66C2`) with crisp white glyphs. |
+| **Frosted-Glass Partner Strip** | Transparent blur (`backdrop-filter: blur(22px)`) card housing the supplied *Solar Shop — Powered by Trilect* lockup alongside high-clarity vector badges for **Master Electricians**, **SEANZ**, **Mastercraft Electrical**, **+IMPAC Prequal**, and **Site Safe & EWRB**. |
+| **Continuous Review Slider** | Matching transparent-blur glass card on the right featuring a randomized, non-stop scrolling marquee of verified New Zealand customer reviews (`4.9 / 5.0 ★`). |
+| **3D Solar-Panel Stats Bar** | 5 individual 3D monocrystalline solar-panel cards (`25 yr Panel Warranty`, `1–2 Days to Install`, `$0 Roof Check`, `80+ Master Electricians`, `100+ MWp Installed`) with wafer cell grids and golden busbars set over a panoramic New Zealand field solar installation background (`assets/photos/sbar-field-crew.webp`). |
 
 ---
 
@@ -45,89 +46,38 @@ npx serve .
 
 Then open <http://localhost:8000>.
 
-> Opening `index.html` directly from disk mostly works, but a local server is
-> recommended so the web fonts and the slider load exactly as they do in production.
-
 ---
 
-## Deploy
+## Deploy to `https://github.com/tezofy/solarshophome/`
 
-**GitHub Pages** — push this repository, then *Settings ▸ Pages ▸ Branch: `main` / root*.
-The included `.nojekyll` file makes Pages serve the folders as-is.
+**Option A — GitHub Web Upload (Drag & Drop)**
+1. Extract `solarshophome-github-push.zip` on your computer.
+2. Open <https://github.com/tezofy/solarshophome/> and click **Add file ▸ Upload files**.
+3. Drag and drop **all files and folders** from inside the extracted folder (`index.html`, `README.md`, `assets/`, `screenshots/`, `.nojekyll`, `robots.txt`, `sitemap.xml`, `CNAME.sample`).
+4. Click **Commit changes** on the `main` branch.
 
-**Netlify / Vercel / Cloudflare Pages** — no configuration needed; it is a static site.
+**Option B — Git CLI Push**
+```bash
+git add -A
+git commit -m "Update Solar Shop home hero — Split Editorial & Framed Showcase"
+git push origin main
+```
 
 ---
 
 ## Project structure
 
 ```
-index.html                     the home page (hero = new, everything else = live site)
+index.html                     the home page (redesigned hero + full live site sections)
 assets/
-  tokens.css                   design tokens: colours, gradient, type, spacing, hero height
-  hero.css                     hero layout + slider + responsive rules
-  hero.js                      slider behaviour + a small demo-link notice
-  site.css, site.js            the live site's own styles/scripts (unchanged)
+  tokens.css                   design tokens (--hv2-*) for typography, colours, spacing
+  hero.css                     Split Editorial hero, frosted glass cards, review marquee & 3D solar stat cards
+  hero.js                      5-photo showcase slider controller + randomized continuous review marquee
+  site.css, site.js            the live site's own styles/scripts
   fonts.css, fonts/            self-hosted Plus Jakarta Sans + Fraunces Italic
-  photos/hero-01…05.webp       the five hero photographs, optimised for the web
-  supplied/                    client-supplied lockup + accreditation strip
+  photos/hero-01…05.webp       the five hero showcase photographs
+  photos/sbar-field-crew.webp  panoramic field solar crew background for the bottom stats bar
+  supplied/                    client-supplied lockup + accreditation assets
   *.webp, *.png                the rest of the site's images
-screenshots/                   preview images used by this README
+screenshots/                   desktop, mobile, and full-page preview screenshots
 ```
-
-Everything is web-optimised: **the whole repo is about 4 MB**, every file is far below
-GitHub's 25 MB / 100 MB limits, and there is no build step.
-
-> The layered SVG artboards, the export slices and the full-resolution source images
-> live in the **full design package** (`solarshop-home-github.zip`), not in this
-> light repository — keep them out of Git so the repo stays fast to clone and deploy.
-
----
-
-## Editing the hero
-
-Everything visual is driven by **`assets/tokens.css`**:
-
-```css
---hv2-hero-part: 0.8;      /* hero height as a share of the old 900px hero  */
---hv2-wash-left: linear-gradient(90deg, #F4F8F0 0%, … transparent 66%);
---hv2-fs-h1: clamp(30px, calc(var(--hv2-h) * 0.076), 56px);
-```
-
-Change a value there and the whole hero — type, buttons, spacing, gradient — follows.
-Copy lives in `index.html`; slide captions are the `data-cap` attributes on `.hv2-slide`;
-the slider timing is `delay` in `assets/hero.js`.
-
----
-
-## Notes
-
-* Contact links (`contact.html#quote`, sub-page navigation) point at pages that are not
-  part of this single-page build; the demo shows a small notice instead of a dead end.
-* Fonts are self-hosted, so the page renders identically offline.
-* All client-supplied artwork is used unmodified (verified byte-identical to the originals).
-* Photography in `assets/photos/` is optimised WebP of the client's originals
-  (the full-resolution PNGs are kept in the full design package).
-
----
-
-## Quick start (copy-paste)
-
-```bash
-git init
-git add .
-git commit -m "Solar Shop home page — new hero with team-photo slider"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
-```
-
-GitHub Pages: **Settings ▸ Pages ▸ Source: Deploy from a branch ▸ `main` / `/ (root)`**.
-Update the placeholder URL in `sitemap.xml` and `robots.txt` to your final address.
-
-## License / usage
-
-The Solar Shop and Trilect logos, the supplied photography and the accreditation artwork
-belong to Solar Shop / Trilect and are included only as part of this design submission.
-The page code (`assets/tokens.css`, `assets/hero.css`, `assets/hero.js`, `index.html` hero
-markup) may be reused by Solar Shop for their site.

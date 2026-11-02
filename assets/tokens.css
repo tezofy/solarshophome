@@ -1,105 +1,68 @@
 /* =====================================================================
-   SOLAR SHOP — HERO DESIGN TOKENS
+   SOLAR SHOP — HERO DESIGN TOKENS (v6 "Split Editorial & Framed Showcase")
    ---------------------------------------------------------------------
-   Everything a designer might want to change globally lives here.
-   The hero itself (assets/hero.css) only *reads* these tokens, so a
-   single edit here updates every size, colour, contrast and spacing
-   value — including the left-hand gradient.
-
-   Colours, fonts and the old hero height are measured from the live
-   solarshop.co.nz stylesheet (assets/site.css).
+   Everything a designer might want to tune globally lives here.
+   The hero stylesheet (assets/hero.css) reads these tokens so a single
+   adjustment updates sizing, palette, elevation, and motion across all
+   breakpoints.
    ===================================================================== */
 
 .hv2 {
 
-  /* ---------- 1. LAYOUT / HEIGHT -------------------------------- */
-  /* The home page hero the site served before this design. */
-  --hv2-current-hero: max(720px, min(100vh, 960px));
+  /* ---------- 1. LAYOUT & DIMENSIONS ---------------------------- */
+  --hv2-wrap: min(1600px, 100% - 2 * clamp(20px, 4vw, 80px));
+  --hv2-pad-top: clamp(90px, 9.8vh, 112px);    /* clears floating header */
+  --hv2-pad-bot: clamp(18px, 2.5vh, 30px);
+  --hv2-col-gap: clamp(24px, 3vw, 48px);
 
-  /* Hero height as a share of that old hero.
-     1/3 = brief · 0.62 = first showcase band · 0.8 = full-bleed band.
-     Change this ONE number and every size below re-scales with it. */
-  --hv2-hero-part: 0.8;                       /* 720px @ 1440x900 */
-  --hv2-h: max(var(--hv2-min-h), calc(var(--hv2-current-hero) * var(--hv2-hero-part)));
-  --hv2-min-h: 620px;
+  /* Framed photo showcase height on desktop */
+  --hv2-stage-h: clamp(310px, 37vh, 405px);
 
-  --hv2-wrap: min(1600px, 100% - 2 * clamp(24px, 4vw, 80px)); /* = .wrap */
-  --hv2-copy-w: clamp(430px, 45vw, 690px);    /* text never leaves the gradient */
-  --hv2-pad-top: clamp(112px, 13vh, 150px);   /* clears the floating nav */
-  --hv2-pad-bot: clamp(24px, calc(var(--hv2-h) * 0.045), 34px);
+  /* Supplied brand assets sizing */
+  --hv2-lockup-h: clamp(38px, 3.2vw, 48px);
+  --hv2-accred-h: clamp(28px, 2.5vw, 36px);
 
-  /* supplied "Solar Shop — Powered by Trilect" lockup + accreditation strip */
-  --hv2-lockup-h: clamp(42px, calc(var(--hv2-h) * 0.090), 60px);
-  --hv2-accred-h: clamp(28px, calc(var(--hv2-h) * 0.056), 38px);
+  /* ---------- 2. PALETTE (from live solarshop.co.nz) ------------ */
+  --hv2-bg: #F4F8F0;                           /* signature botanical cream-sage */
+  --hv2-bg-warm: #FBF8F1;                      /* soft ivory highlight */
+  --hv2-ink: var(--ink, #18301E);              /* deep forest ink */
+  --hv2-body: var(--text, #425244);            /* editorial body copy */
+  --hv2-muted: #5F6F61;                        /* captions & metadata */
+  --hv2-gold: #8C7234;                         /* Fraunces italic accent */
+  --hv2-gold-soft: #F3E2B0;                    /* warm sun circle inside primary CTA */
+  --hv2-green: var(--green, #4F8452);          /* botanical accent green */
+  --hv2-leaf: var(--leaf, #8EAD69);            /* live indicator dot */
+  --hv2-primary: var(--deep, #1F3D26);         /* primary button surface */
+  --hv2-primary-hover: var(--deep2, #142A1A);  /* primary button hover */
+  --hv2-line: var(--line, #E2DEC9);            /* warm architectural hairline */
+  --hv2-line-soft: rgba(31, 61, 38, 0.09);     /* subtle card border */
 
-  /* photo band on tablets / phones */
-  --hv2-band-h: clamp(230px, 54vw, 340px);
-
-  /* ---------- 2. COLOUR (from the live site) -------------------- */
-  --hv2-bg: var(--lighter, #F4F8F0);       /* exact previous hero bg */
-  --hv2-ink: var(--ink, #18301E);          /* headings               */
-  --hv2-body: var(--text, #4B5A4D);        /* body copy              */
-  --hv2-muted: #6B786C;                    /* captions               */
-  --hv2-gold: #8C7234;                     /* serif accent — measured from the live hero */
-  --hv2-primary: var(--deep, #1F3D26);     /* primary button         */
-  --hv2-primary-hover: var(--deep2, #173120);
-  --hv2-line: var(--line, #E6DFCD);        /* hairlines              */
-  --hv2-line-soft: rgba(31, 61, 38, .09);  /* card borders           */
-
-  /* ---------- 3. THE LEFT-HAND GRADIENT ------------------------- */
-  /* Three stacked washes, all built from the site's own hero colour
-     (#F4F8F0). Opaque where the copy sits, clearing to 0 so the photo
-     shows in full colour on the right. No colour cast on the photo.  */
-  --hv2-wash-left:
-    linear-gradient(90deg,
-      #F4F8F0 0%,
-      #F4F8F0 25%,
-      rgba(244,248,240,.98) 32%,
-      rgba(244,248,240,.90) 38%,
-      rgba(244,248,240,.66) 45%,
-      rgba(244,248,240,.34) 52%,
-      rgba(244,248,240,.10) 60%,
-      rgba(244,248,240,0) 66%);
-  --hv2-wash-top:
-    linear-gradient(180deg,
-      rgba(244,248,240,.26) 0%,
-      rgba(244,248,240,.07) 5%,
-      rgba(244,248,240,0) 11%);
-  --hv2-wash-bottom:
-    linear-gradient(0deg,
-      rgba(244,248,240,.72) 0%,
-      rgba(244,248,240,.26) 7%,
-      rgba(244,248,240,0) 17%);
-  /* phone/tablet: the same wash, turned to run bottom-to-top */
-  --hv2-wash-vertical:
-    linear-gradient(180deg,
-      rgba(244,248,240,0) 46%,
-      rgba(244,248,240,.45) 72%,
-      rgba(244,248,240,.92) 90%,
-      #F4F8F0 100%);
-
-  /* ---------- 4. TYPE ------------------------------------------- */
+  /* ---------- 3. TYPOGRAPHY ------------------------------------- */
   --hv2-font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --hv2-serif: Fraunces, Georgia, serif;
 
-  --hv2-fs-h1: clamp(30px, calc(var(--hv2-h) * 0.076), 56px);   /* 54.7 @720 */
-  --hv2-fs-sub: clamp(15px, calc(var(--hv2-h) * 0.026), 18px);
-  --hv2-fs-btn: clamp(14px, calc(var(--hv2-h) * 0.021), 15.5px);
-  --hv2-fs-small: clamp(11px, calc(var(--hv2-h) * 0.017), 12.5px);
-  --hv2-fs-cap: clamp(11.5px, calc(var(--hv2-h) * 0.018), 13px);
-  --hv2-lh-h1: 1.05;
-  --hv2-lh-sub: 1.5;
+  --hv2-fs-h1: clamp(34px, 3.65vw, 56px);
+  --hv2-lh-h1: 1.04;
+  --hv2-fs-sub: clamp(15.5px, 1.18vw, 18px);
+  --hv2-lh-sub: 1.55;
+  --hv2-fs-btn: clamp(14.5px, 1vw, 15.5px);
+  --hv2-fs-cap: clamp(12.5px, 0.9vw, 14px);
 
-  /* ---------- 5. SPACING ---------------------------------------- */
-  --hv2-gap-xs: clamp(9px, calc(var(--hv2-h) * 0.016), 14px);
-  --hv2-gap-sm: clamp(12px, calc(var(--hv2-h) * 0.022), 18px);
-  --hv2-gap-md: clamp(18px, calc(var(--hv2-h) * 0.032), 28px);
-
-  /* ---------- 6. SHAPE / ELEVATION ------------------------------ */
-  --hv2-radius-card: 20px;
+  /* ---------- 4. SPACING & SHAPE -------------------------------- */
+  --hv2-radius-stage: 26px;
+  --hv2-radius-card: 22px;
+  --hv2-radius-dock: 18px;
   --hv2-radius-btn: 999px;
-  --hv2-btn-h: clamp(44px, calc(var(--hv2-h) * 0.072), 52px);
-  --hv2-card-bg: rgba(255, 255, 255, .95);
-  --hv2-card-shadow: 0 24px 50px -34px rgba(14, 30, 18, .35);  /* = .glass */
-  --hv2-ease: cubic-bezier(.2, .8, .2, 1);
+  --hv2-btn-h: clamp(48px, 5.4vh, 54px);
+
+  /* ---------- 5. ELEVATION & MOTION ----------------------------- */
+  --hv2-card-bg: rgba(255, 255, 255, 0.92);
+  --hv2-card-shadow:
+    0 20px 44px -24px rgba(18, 38, 24, 0.18),
+    0 2px 6px rgba(18, 38, 24, 0.04);
+  --hv2-stage-shadow:
+    0 32px 64px -28px rgba(14, 32, 19, 0.34),
+    0 6px 18px -6px rgba(14, 32, 19, 0.12);
+  --hv2-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --hv2-slide-duration: 5200ms;
 }
