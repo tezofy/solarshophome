@@ -128,7 +128,7 @@
     clearTimeout(timer);
   }
 
-  var stage = document.querySelector('.hv2-col-right') || document.getElementById('hv2-slider');
+  var stage = document.querySelector('.hv2-media') || document.getElementById('hv2-slider');
   if (stage) {
     stage.addEventListener('mouseenter', pause);
     stage.addEventListener('mouseleave', play);

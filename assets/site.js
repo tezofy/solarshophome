@@ -104,7 +104,7 @@ if(SPA)route();else{observe(document);if(location.hash){var t0=document.getEleme
   d.setAttribute('aria-hidden','true');r.setAttribute('aria-hidden','true');
   B.appendChild(d);B.appendChild(r);B.classList.add('cur-js');
   var x=-100,y=-100,rx=-100,ry=-100,last=null,moving=false;
-  var DARK='.nat,.steps,.diff.dark,.afeat>div:first-child,.btn,.hq-btn,.ftab.on,.sysk .link,.elink span,.stp .sn,.ctabox,.hero,.phero,.sp-ph,.prodc-img,.gal,.jobstrip,.aph,.wideph,.impact figure,.pgimg,.pano,.sfc figure,.plans,.pt,.shedrow,.cowph,.recog>img,.serv figure,.xpi,.pfilter .on,.film-in';
+  var DARK='.nat,.steps,.diff.dark,.afeat>div:first-child,.btn,.hq-btn,.ftab.on,.sysk .link,.elink span,.stp .sn,.ctabox,.phero,.sp-ph,.prodc-img,.gal,.jobstrip,.aph,.wideph,.impact figure,.pgimg,.pano,.sfc figure,.plans,.pt,.shedrow,.cowph,.recog>img,.serv figure,.xpi,.pfilter .on,.film-in,.hv2-media,.hv2-sbar-frame,.hv2-btn-primary,.hv2-soc a';
   var LIGHT='.hq-pw,.custs,.member,.brands,.logo,.bar,.specc,.pt figcaption,.glass,.pcard,.mega-in,.usetbl,.film-ctl';
   var HOV='a,button,input,select,textarea,label,.opt,.q button,[role=button]';
   function state(t){

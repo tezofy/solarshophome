@@ -357,9 +357,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
-  min-height: 112px;
-  padding: 13px 18px 14px;
+  gap: 8px;
+  height: 126px;
+  min-height: 126px;
+  padding: 12px 18px 14px;
   border-radius: var(--hv2-radius-card);
   background: linear-gradient(
     135deg,
@@ -829,9 +830,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 8px;
-  min-height: 112px;
-  padding: 11px 14px 12px;
+  gap: 7px;
+  height: 126px;
+  min-height: 126px;
+  padding: 10px 14px 11px;
   border-radius: var(--hv2-radius-card);
   background: linear-gradient(
     135deg,
@@ -931,8 +933,8 @@
 
 .hv2-rev-card {
   flex: 0 0 auto;
-  width: 268px;
-  padding: 8px 12px;
+  width: 288px;
+  padding: 7px 12px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(255, 255, 255, 0.85);
@@ -940,7 +942,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
 }
 .hv2-rev-top {
   display: flex;
@@ -1236,6 +1238,63 @@
    9. RESPONSIVE BREAKPOINTS
    ===================================================================== */
 
+/* Short desktop/laptop viewports (e.g. 1366x768, 1280x720): keep entire hero + 5 solar cards visible above the fold */
+@media (max-height: 810px) and (min-width: 861px) {
+  .hero.hv2 {
+    min-height: 0;
+    padding: 78px 0 16px;
+  }
+  .hv2-in {
+    row-gap: 11px;
+  }
+  .hv2-eyebrow {
+    margin-bottom: 8px;
+    padding: 4px 12px 4px 8px;
+  }
+  .hv2-title {
+    font-size: clamp(32px, 3.3vw, 42px);
+  }
+  .hv2-sub {
+    margin-top: 8px;
+    font-size: 14.5px;
+  }
+  .hv2-pills {
+    margin-top: 10px;
+  }
+  .hv2-cta {
+    margin-top: 12px;
+  }
+  .hv2-btn {
+    height: 46px;
+  }
+  .hv2-media {
+    min-height: 276px;
+  }
+  .hv2-strip.hv2-surface,
+  .hero.hv2 .hv2-strip.hv2-surface.glass,
+  .hv2-revbar.hv2-surface,
+  .hero.hv2 .hv2-revbar.hv2-surface.glass {
+    height: 114px;
+    min-height: 114px;
+    padding: 9px 14px;
+  }
+  .hv2-sbar {
+    padding: 13px 16px;
+  }
+  .hv2-sbar-item {
+    min-height: 126px;
+    padding: 11px 10px 10px;
+  }
+  .hv2-sbar-ic {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 6px;
+  }
+  .hv2-sbar-val {
+    font-size: clamp(22px, 2vw, 28px);
+  }
+}
+
 /* Medium-wide laptops & split-screen preview panes (861px–1360px) */
 @media (max-width: 1360px) {
   .hv2-dot {
@@ -1457,6 +1516,7 @@
   .hero.hv2 .hv2-revbar.hv2-surface.glass {
     padding: 10px 12px;
     border-radius: 18px;
+    height: auto;
     min-height: 98px;
   }
   .hv2-rev-live {
@@ -1470,6 +1530,8 @@
   .hero.hv2 .hv2-strip.hv2-surface.glass {
     padding: 12px 14px;
     border-radius: 18px;
+    height: auto;
+    min-height: 0;
   }
   .hv2-strip-badge {
     display: none;
